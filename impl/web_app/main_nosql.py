@@ -312,7 +312,7 @@ async def load_docs_from_directory(nosql_svc, wrangled_libs_dir, max_docs):
                     doc = FS.read_json(fq_name)
                     load_counter.increment("document_files_read")
                     doc["_id"] = (
-                        "{}_{}".format(doc["libtype"].strip(), doc["title"].strip())
+                        "{}_{}".format(doc.get("libtype", "unknown").strip(), doc["title"].strip())
                         .replace("-", "_")
                         .lower()
                     )

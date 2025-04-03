@@ -318,7 +318,7 @@ ruamel-yaml==0.18.10
     # via prance
 ruamel-yaml-clib==0.2.12
     # via ruamel-yaml
-scipy==1.15.1
+scipy==1.15.2
     # via semantic-kernel
 semantic-kernel==1.21.1
     # via -r requirements.in

@@ -227,7 +227,6 @@ public class AppGraphBuilder {
                 Map doc = results.get(r);
                 docCounter.incrementAndGet();
                 triplesBuilder.ingestDocument(doc);
-                // allDocuments.add(doc);
             }
             return Flux.empty();
         }).blockLast();

@@ -1,4 +1,4 @@
-# CosmosAIGraph
+# CosmosAIGraph - Testing 
 
 **AI-Powered Graph and RAG implementation of OmniRAG pattern, utilizing Azure Cosmos DB and other sources**
 

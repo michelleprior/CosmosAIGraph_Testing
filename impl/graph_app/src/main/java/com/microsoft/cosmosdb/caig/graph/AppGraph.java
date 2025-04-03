@@ -187,9 +187,9 @@ public class AppGraph {
             ObjectMapper objectMapper = new ObjectMapper();
 
             DependenciesQueryResult dqr = objectMapper.readValue(json, DependenciesQueryResult.class);
-            tLib.setDependencies(dqr.getSingleNamedValues("used_library"));
+            tLib.setDependencies(dqr.getSingleNamedValues("dependsOn"));
 
-            ArrayList<String> dependencies = dqr.getSingleNamedValues("used_library");
+            ArrayList<String> dependencies = dqr.getSingleNamedValues("dependsOn");
             for (int d = 0; d < dependencies.size(); d++) {
                 String depUri = dependencies.get(d);
                 if (!tLibs.containsKey(depUri)) {
@@ -208,9 +208,9 @@ public class AppGraph {
     private String sparqlDependenciesQuery(String libUri) {
         StringBuilder sb = new StringBuilder();
         sb.append("PREFIX c: <http://cosmosdb.com/caig#>");
-        sb.append(" SELECT ?used_library");
+        sb.append(" SELECT ?title");
         sb.append(" WHERE { ");
-        sb.append(" <" + libUri + "> c:uses_library ?used_library .");
+        sb.append(" <" + libUri + "> c:dependOn ?title .");
         sb.append(" } LIMIT 40");
         return sb.toString();
     }

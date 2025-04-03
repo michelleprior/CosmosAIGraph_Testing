@@ -63,13 +63,13 @@ echo 'setting CAIG_GRAPH_SOURCE_DB'
 export CAIG_GRAPH_SOURCE_DB="caig"
 
 echo 'setting CAIG_GRAPH_SOURCE_OWL_FILENAME'
-export CAIG_GRAPH_SOURCE_OWL_FILENAME="ontologies/libraries.owl"
+export CAIG_GRAPH_SOURCE_OWL_FILENAME="ontologies/entities-1.owl"
 
 echo 'setting CAIG_GRAPH_SOURCE_RDF_FILENAME'
 export CAIG_GRAPH_SOURCE_RDF_FILENAME="rdf/libraries-graph.nt"
 
 echo 'setting CAIG_GRAPH_SOURCE_TYPE'
-export CAIG_GRAPH_SOURCE_TYPE="json_docs_file"
+export CAIG_GRAPH_SOURCE_TYPE="cosmos_nosql"
 
 echo 'setting CAIG_HOME'
 export CAIG_HOME="xxxxxxxxxxxxxxxx"

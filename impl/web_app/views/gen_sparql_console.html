@@ -114,16 +114,12 @@ python main_common.py owl_visualizer ontologies/libraries.owl
 
   // create an array with the nodes (i.e. - "entities")
   var nodes = new vis.DataSet([
-    { id: "Dev", label: "Dev" },
-    { id: "Doc", label: "Doc" },
-    { id: "Lib", label: "Lib" }
+    { id: "Entity", label: "Entity" }
   ]);
 
   // create an array with the edges (i.e. - "relationships")
   var edges = new vis.DataSet([
-    { from: "Dev", to: "Lib", title: "developer_of" },
-    { from: "Lib", to: "Dev", title: "developed_by" },
-    { from: "Lib", to: "Lib", title: "used_by_lib, uses_lib" }
+    { from: "Entity", to: "Entity", title: "dependsOn" }
   ]);
 
   var html_container = document.getElementById("ontology_viz");

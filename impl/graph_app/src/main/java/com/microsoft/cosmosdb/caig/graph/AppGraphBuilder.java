@@ -1,5 +1,23 @@
 package com.microsoft.cosmosdb.caig.graph;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
+
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.util.FileManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.azure.cosmos.CosmosAsyncClient;
 import com.azure.cosmos.CosmosAsyncContainer;
 import com.azure.cosmos.CosmosAsyncDatabase;
@@ -12,24 +30,8 @@ import com.microsoft.cosmosdb.caig.models.SparqlQueryRequest;
 import com.microsoft.cosmosdb.caig.models.SparqlQueryResponse;
 import com.microsoft.cosmosdb.caig.util.AppConfig;
 import com.microsoft.cosmosdb.caig.util.FileUtil;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.riot.Lang;
-import org.apache.jena.util.FileManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import reactor.core.publisher.Flux;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
+import reactor.core.publisher.Flux;
 
 /**
  * Instances of this class are created at application startup to create/build the
@@ -135,7 +137,7 @@ public class AppGraphBuilder {
         if (useDefaultModelLogic) {
             Model model = ModelFactory.createDefaultModel();
             return model;
-        }
+            }
         else {
             try {
                 String owlFile = AppConfig.getGraphOwlFilename();
@@ -276,7 +278,7 @@ public class AppGraphBuilder {
      */
     private static String cosmosdbSourceSqlQuery() {
         return """
-        select c._id, c.name, c.libtype, c.kwds, c.developers, c.dependency_ids, c.release_count from c offset 0 limit 999999
+        select c.title, c.type, c.description, c.frequency, c.degree, c.libtype, c.dependencies from c offset 0 limit 999999
         """.strip();
     }
 

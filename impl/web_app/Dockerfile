@@ -4,6 +4,7 @@ RUN     mkdir -p /app/tmp
 RUN     mkdir -p /app/uploads
 RUN     apk add gcc python3-dev
 RUN     apk add gcc musl-dev linux-headers python3-dev
+RUN     apk add rust cargo
 COPY    . .
 RUN     pip install --upgrade pip
 RUN     pip install -r requirements-alpine.txt

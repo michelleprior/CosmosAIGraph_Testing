@@ -257,7 +257,7 @@ async def load_entities(dbname, cname):
         await nosql_svc.initialize()
         nosql_svc.set_db(dbname)
         nosql_svc.set_container(cname)
-        doc = FS.read_json("../data/entities/entities_doc.json")
+        doc = FS.read_json("entities_doc.json")
         print(doc)
         resp = await nosql_svc.upsert_item(doc)
         print(resp)
@@ -285,7 +285,7 @@ async def load_libraries(dbname, cname, max_docs):
         nosql_svc.set_db(dbname)
         nosql_svc.set_container(cname)
         await load_docs_from_directory(
-            nosql_svc, "../data/pypi/wrangled_libs", max_docs
+            nosql_svc, "entities", max_docs
         )
     except Exception as e:
         logging.info(str(e))
@@ -299,7 +299,7 @@ async def load_docs_from_directory(nosql_svc, wrangled_libs_dir, max_docs):
     max_idx = len(filtered_files_list) - 1
     batch_number, batch_size, batch_operations = 0, 10, list()
     load_counter = Counter()
-    pk = "pypi"  # libtype is 'pypi'; dataset easily fits into one physical partition
+    pk = "en"  # libtype is 'pypi'; dataset easily fits into one physical partition
 
     for idx, filename in enumerate(filtered_files_list):
         if filename.endswith(".json"):
@@ -312,7 +312,7 @@ async def load_docs_from_directory(nosql_svc, wrangled_libs_dir, max_docs):
                     doc = FS.read_json(fq_name)
                     load_counter.increment("document_files_read")
                     doc["_id"] = (
-                        "{}_{}".format(doc["libtype"].strip(), doc["name"].strip())
+                        "{}_{}".format(doc["libtype"].strip(), doc["title"].strip())
                         .replace("-", "_")
                         .lower()
                     )

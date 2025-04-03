@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+  xmlns      = "http://cosmosdb.com/caig#"
+  xmlns:owl  = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd  = "http://www.w3.org/2001/XMLSchema#"
+  xml:base   = "http://cosmosdb.com/caig">
+
+  <owl:Ontology rdf:about="">
+    <rdfs:comment>Entity Dependencies Ontology</rdfs:comment>
+  </owl:Ontology>
+
+  <!-- Classes -->
+    <owl:Class rdf:ID="Entity"/>
+
+  <!-- Data Properties -->
+  <owl:DatatypeProperty rdf:ID="title">
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="type">
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="description">
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="frequency">
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="degree">
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="libtype">
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  
+
+  <!-- Object Properties -->
+  <owl:ObjectProperty rdf:ID="dependsOn">
+    <rdfs:comment xml:lang="en">Represents a dependency relationship between entities with weight</rdfs:comment>
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="#Entity"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:ID="weight">
+    <rdfs:comment xml:lang="en">Weight of the dependency relationship</rdfs:comment>
+    <rdfs:domain rdf:resource="#dependsOn"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>
